@@ -320,5 +320,52 @@ const animationTimeline = () => {
   });
 };
 
-// Run fetch and animation in sequence
-fetchData();
+// 音乐控制
+let bgMusic = document.getElementById('bgMusic');
+let musicIcon = document.getElementById('musicIcon');
+let musicDialog = document.getElementById('musicDialog');
+let isPlaying = false;
+let animationStarted = false;
+
+// 显示音乐播放请求弹窗
+function showMusicDialog() {
+  musicDialog.showModal();
+}
+
+// 确认播放音乐
+function confirmMusic() {
+  bgMusic.play();
+  musicIcon.style.opacity = '1';
+  isPlaying = true;
+  musicDialog.close();
+  if (!animationStarted) {
+    animationStarted = true;
+    fetchData();
+  }
+}
+
+// 取消播放音乐
+function cancelMusic() {
+  musicIcon.style.opacity = '0.5';
+  isPlaying = false;
+  musicDialog.close();
+  if (!animationStarted) {
+    animationStarted = true;
+    fetchData();
+  }
+}
+
+// 切换音乐播放状态
+function toggleMusic() {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicIcon.style.opacity = '0.5';
+  } else {
+    bgMusic.play();
+    musicIcon.style.opacity = '1';
+  }
+  isPlaying = !isPlaying;
+}
+
+// 页面加载完成后显示音乐播放请求
+window.addEventListener('load', showMusicDialog);
