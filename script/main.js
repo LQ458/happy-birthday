@@ -209,7 +209,9 @@ const animationTimeline = () => {
       {
         scale: 0.1,
         opacity: 0,
-        ease: Elastic.easeOut.config(1, 0.5)
+        ease: Elastic.easeOut.config(1, 0.5),
+        force3D: true,
+        clearProps: "transform"
       },
       "-=2"
     )
@@ -220,7 +222,9 @@ const animationTimeline = () => {
         scale: 0.1,
         opacity: 0,
         rotation: 180,
-        ease: Elastic.easeOut.config(1, 0.5)
+        ease: Elastic.easeOut.config(1, 0.5),
+        force3D: true,
+        clearProps: "transform"
       },
       0.3
     )
@@ -231,7 +235,9 @@ const animationTimeline = () => {
         scale: 0.1,
         opacity: 0,
         rotation: -180,
-        ease: Back.easeOut.config(1.7)
+        ease: Back.easeOut.config(1.7),
+        force3D: true,
+        clearProps: "transform"
       },
       0.3
     )
@@ -243,7 +249,9 @@ const animationTimeline = () => {
         opacity: 0,
         rotation: 90,
         y: 50,
-        ease: Back.easeOut.config(1.7)
+        ease: Back.easeOut.config(1.7),
+        force3D: true,
+        clearProps: "transform"
       },
       0.2,
       "-=1"

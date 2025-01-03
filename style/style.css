@@ -100,6 +100,10 @@ body {
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   position: relative;
+  transform-origin: center;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .photo-gallery {
@@ -108,6 +112,7 @@ body {
   gap: 12px;
   margin: 20px auto 0;
   padding: 0 10px;
+  will-change: transform;
 }
 
 .gallery-item {
@@ -117,6 +122,10 @@ body {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transform-origin: center;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .hat {
@@ -221,12 +230,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .five p {
