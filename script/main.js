@@ -6,20 +6,16 @@ const fetchData = () => {
       dataArr = Object.keys(data);
       dataArr.map(customData => {
         if (data[customData] !== "") {
-          if (customData === "imagePath") {
-            document
-              .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData]);
-          } else {
+          if (document.querySelector(`[data-node-name*="${customData}"]`)) {
             document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
           }
         }
 
         // Check if the iteration is over
         // Run amimation if so
-        if ( dataArr.length === dataArr.indexOf(customData) + 1 ) {
+        if (dataArr.length === dataArr.indexOf(customData) + 1) {
           animationTimeline();
-        } 
+        }
       });
     });
 };
@@ -87,7 +83,6 @@ const animationTimeline = () => {
     .from(".three", 0.7, {
       opacity: 0,
       y: 10
-      // scale: 0.7
     })
     .to(
       ".three",
@@ -209,30 +204,56 @@ const animationTimeline = () => {
       0.2
     )
     .from(
-      ".lydia-dp",
-      0.5,
+      ".photo-wall",
+      0.7,
       {
-        scale: 3.5,
+        scale: 0.1,
         opacity: 0,
-        x: 25,
-        y: -25,
-        rotationZ: -45
+        ease: Elastic.easeOut.config(1, 0.5)
       },
       "-=2"
     )
-    .from(".hat", 0.5, {
-      x: -100,
-      y: 350,
-      rotation: -180,
-      opacity: 0
-    })
+    .staggerFrom(
+      ".photo-container",
+      1,
+      {
+        scale: 0.1,
+        opacity: 0,
+        rotation: 180,
+        ease: Elastic.easeOut.config(1, 0.5)
+      },
+      0.3
+    )
+    .staggerFrom(
+      ".hat",
+      0.5,
+      {
+        scale: 0.1,
+        opacity: 0,
+        rotation: -180,
+        ease: Back.easeOut.config(1.7)
+      },
+      0.3
+    )
+    .staggerFrom(
+      ".gallery-item",
+      0.8,
+      {
+        scale: 0.1,
+        opacity: 0,
+        rotation: 90,
+        y: 50,
+        ease: Back.easeOut.config(1.7)
+      },
+      0.2,
+      "-=1"
+    )
     .staggerFrom(
       ".wish-hbd span",
       0.7,
       {
         opacity: 0,
         y: -50,
-        // scale: 0.3,
         rotation: 150,
         skewX: "30deg",
         ease: Elastic.easeOut.config(1, 0.5)
@@ -291,9 +312,6 @@ const animationTimeline = () => {
       },
       "+=1"
     );
-
-  // tl.seek("currentStep");
-  // tl.timeScale(2);
 
   // Restart Animation on click
   const replyBtn = document.getElementById("replay");
